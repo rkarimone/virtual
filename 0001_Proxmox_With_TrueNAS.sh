@@ -19,6 +19,7 @@
 
   systemctl restart freenas-proxmox
   /etc/init.d/open-iscsi restart
+  
   mkdir /etc/pve/priv/zfs
   cp .ssh/id_rsa.pub /etc/pve/priv/zfs/172.23.88.200_id_rsa.pub     // 172.23.88.200 ip of TrueNAS Node //
 
