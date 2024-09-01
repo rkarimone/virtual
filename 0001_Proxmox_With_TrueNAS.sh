@@ -106,6 +106,61 @@ systemctl status corosync.service
 systemctl status pveproxy
 
 pveam status
+
+
+#######
+
+
+
+###############
+
+root@prx-server-002:/etc/cron.d# 
+qm list
+
+VMID NAME                 STATUS     MEM(MB)    BOOTDISK(GB) PID       
+2011 iDRAC-OS-Center      stopped    8192             200.00 0         
+2012 freepbx              stopped    8192             100.00 0         
+2013 Bdcome-CallMaster    running    12288            300.00 955574    
+2014 Bdcome-IPPBX         running    12288            300.00 970907    
+3306 WorkStation-02-2141  running    8192             150.00 3767401   
+8214 ABUZZ-CACTI          running    8192             100.00 15776 
+
+############
+
+VM (2013,2014) __replication__ from ---node:prx-server-002 (to) ---node:prx-server-001
+
+
+root@prx-server-002:~# zfs list |grep 2013
+sol1/vm-2013-disk-0       18.9G  2.82T  18.9G  -
+
+zfs list -t snapshot |grep 2013
+pve-zsync list
+pve-zsync create --source 2013 --dest 172.23.88.128:sol1 --verbose --maxsnap 10  --name vm-2013
+
+
+root@prx-server-001:~# zfs list |grep 2013
+sol1/vm-2013-disk-0       18.9G  3.31T  18.9G  -
+
+
+############
+VM (3356) __replication__ from ---node:prx-server-003 (to) ---node:prx-server-002
+
+
+root@prx-server-003:~# zfs list |grep 3356
+sol1/vm-3356-disk-0      5.77G  3.38T  5.77G  -
+
+
+zfs list -t snapshot |grep 3356
+pve-zsync list
+pve-zsync create --source 3356 --dest 172.23.88.129:sol1 --verbose --maxsnap 10  --name vm-3356
+
+
+
+vim /etc/cron.d/pve-zsync     #### adjust crontab-schedule 
+
+
+
+#####
 pvecm status
 
 
