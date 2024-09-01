@@ -49,3 +49,64 @@
 
 # http://storagegaga.com/proxmox-storage-with-truenas-iscsi-volumes/
 
+###########
+
+apt-get install pve-zsync
+
+pvesm zfsscan
+
+zfs list -t snapshot
+pve-zsync create --source 4001 --dest 192.168.105.22:vol1/backup --verbose --maxsnap 3  --name vm-4001
+zfs list -t snapshot |grep 4001
+
+pve-zsync create --source 4001 --dest 192.168.105.22:vol1/backup --verbose --maxsnap 3  --name vm-4001
+
+vim /etc/cron.d/pve-zsync 
+
+cd /etc/cron.d
+
+cat pve-zsync 
+root@prmoxnode4:/etc/cron.d# cat pve-zsync 
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+15 * * * * root pve-zsync sync --source 4001 --dest 192.168.105.22:sol1/ssd --name vm-4001 --maxsnap 10 --method ssh --source-user root --dest-user root
+#*/15 * * * * root pve-zsync sync --source 4009 --dest 192.168.105.22:vol1/backup --name vm-4009 --maxsnap 10 --method ssh --source-user root --dest-user root
+
+
+pve-zsync list
+pve-zsync disable --source 192.168.105.24:4001 --name --name vm-4001
+pve-zsync disable --source 192.168.105.24:4001 --name vm-4001
+
+pve-zsync disable --source 4001 --name vm-4001
+pve-zsync list
+
+pve-zsync destroy --source 4001 --name vm-4001
+pve-zsync list
+
+zfs list -t snapshot |grep 4001
+pve-zsync sync --source 4001 --dest 192.168.105.22:sol1/ssd --name vm-4001 --maxsnap 3 --method ssh --source-user root --dest-user root
+
+zfs list -rt snapshot -o name |grep sol1/ssd/vm-4001-disk-0@ |sort |head -n -0 |xargs -n 1 zfs destroy -r
+zfs list -t snapshot |grep 4001
+  
+pve-zsync create --source 4001 --dest 192.168.105.22:sol1/ssd --verbose --maxsnap 10  --name vm-4001
+pve-zsync create --source 4001 --dest 192.168.105.22:sol1/ssd --verbose --maxsnap 10  --name vm-4001
+
+
+zfs list -t snapshot |grep 4009
+pve-zsync create --source 4009 --dest 192.168.105.22:vol1/backup --verbose --maxsnap 10 --name vm-4009 
+zfs list -t snapshot |grep 4009
+
+pve-zsync disable --source 4009 --name vm-4009
+zfs list -t snapshot |grep 4001
+
+systemctl status pveproxy
+systemctl status corosync.service
+systemctl status pveproxy
+
+pveam status
+pvecm status
+
+
+
