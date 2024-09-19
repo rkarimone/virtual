@@ -88,3 +88,30 @@ Ref-3: https://pve.proxmox.com/wiki/PVE-zsync
 
 
 
+
+
+###############################################################################################
+###############################################################################################
+
+// PERIODIC REPLICATION AND SNAPSHOT TASK in PROXMOX CLUSTER with ZFS Backend //
+
+SRC NODE: PRXSRV-01; 
+DST NODE: PRXSRV-02; 
+
+apt install pve-zsync 	// In both source and destination proxmox clustered nodes //
+
+# { Replication Network 10g } #
+SRC HOST-IP: 172.23.88.128	
+DST HOST-IP: 172.23.88.129
+
+
+root@prx-server-001:~# 
+zfs list |grep 8052		// 8052 is PROXMOX CT ID //
+zfs list -t snapshot |grep 8052
+
+
+root@prx-server-001:~# 
+11 */2 * * * root pve-zsync sync --source 8052 --dest 172.23.88.129:sol1 --name ct-8052 --maxsnap 24 --method ssh --source-user root --dest-user root
+
+###############################################################################################
+
