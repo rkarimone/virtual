@@ -115,3 +115,43 @@ root@prx-server-001:~#
 
 ###############################################################################################
 
+
+
+
+###############################################################################################
+######## || PROXMOX BOOT DISK REPAIR || #######################################################
+###############################################################################################
+
+sgdisk --zap-all /dev/sda
+
+>> Must copy the partition table >>
+
+
+sgdisk /dev/sdb -R /dev/sda              > /dev/sda = destination disk or new disk    > /dev/sdb = source disk or existing/running disk
+sgdisk -G /dev/sda
+cfdisk /dev/sda
+cfdisk /dev/sdb
+lsblk
+
+proxmox-boot-tool format /dev/sda2 --force
+proxmox-boot-tool init /dev/sda2 --force
+
+zpool replace rpool -f ata-WDC_WDS120G2G0A-00JH30_181738804394-part3 ata-WDC_WDS120G2G0A-00JH30_181742801635-part3 
+ 
+ 
+ata-WDC_WDS120G2G0A-00JH30_181738804394-part3 = Error Disk
+ata-WDC_WDS120G2G0A-00JH30_181742801635-part3 = New Disk
+
+
+###############################################################################################
+
+ 
+
+
+
+
+
+
+
+
+
