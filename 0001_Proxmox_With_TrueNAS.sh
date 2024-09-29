@@ -165,3 +165,55 @@ pvecm status
 
 
 
+################################################################################################
+|| TRUE-NAST-CORE => NFS SERVICE CONFIGURATION  || 
+################################################################################################
+
+
+|| 01 ||   NAVIGATE → STORAGE → POOLS → ADD DATASET   ||||
+
+[ Name ] 				      < tnas01-nfs4d01 >
+[ Comments ] 			    < tnas01-nfs4d01 >
+[ Sync ] 				      < Disabled >
+[ Compression Level ]	< lz4 >
+[ Enable Atime ]			< Off >
+[ ZFS Deduplocation ]	< Off >
+
+
+|| 02 ||   NAVIGATE → STORAGE → POOLS → EDIT PERMISSIONS (USE ACL)   ||||
+
+[Select a preset ACL]
+[ACL Options : RESTRICTED]
+[ Path ] 				< /mnt/vol1/tnas01-nfs4d01 > 
+[ User ] 				< nobody > 	[ Tick Apply User ]
+[ Group ] 			< nogroup > 	[ Tick Aplly Group ]
+[ Tick ] 				< Apply Permission Recursively >
+
+( ALSO SET )+(ADD ACL ITEM)
+[ Access Control List ]
+Owner 		→ 	(Full Control)
+Group 		→ 	(Full Control)
+Everyone 	→ 	(Full Control)
+
+|| 03 ||   NAVIGATE → SHARING → NFS → ADD (ALSO CLICK ADVANCED OPTIONS)   ||||
+
+[ Path ] 				< /mnt/vol1/tnas01-nfs4d01 >
+[ Tick ] 				< Quiet >
+[ Tick ] 				< Enabled >
+
+[ Maproot User ] 		      < nobody >
+[ Maproot Group ] 		    < nogroup >
+[ Authorized Networks ] 	< 172.23.77.0/24 172.23.88.0/24 >
+
+|| 04 ||   NAVIGATE → SERVICES → NFS →   ||||
+
+[ Number of Services ] 	< 32 >
+[ Bind IP Addresses ] 	< 172.23.77.100, 172.23.88.100 >
+[ Tick ] 				        < Enable NFSv4 >
+[ Tick ] 				        < Allow non-root mount >
+
+
+|| APPLY AND RESTART NFS SERVICE ||
+
+
+
