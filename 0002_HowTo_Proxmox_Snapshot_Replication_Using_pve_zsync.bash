@@ -146,7 +146,8 @@ ata-WDC_WDS120G2G0A-00JH30_181742801635-part3 = New Disk
 ###############################################################################################
 
  
-
+vim /usr/bin/zfs_arc_summery.sh
+arc_summary | grep -E 'ARC size \(current\)|Min size \(hard limit\)|Max size \(high water\)|Anonymous metadata size'
 
 
 
