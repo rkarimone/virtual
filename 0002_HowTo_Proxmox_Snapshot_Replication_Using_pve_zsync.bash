@@ -185,9 +185,15 @@ echo "4294967296" >> /sys/module/zfs/parameters/zfs_arc_max
 sleep 3
 ip link set ens4f0 up 
 ip link set ens4f1 up
+#
+sleep 3
+ip link set dev ens4f1 mtu 9000
+#ip link set dev ens4f0 mtu 9000
+#
 sleep 2
 ip addr add 192.168.40.22/27 brd + dev ens4f1
 ip addr add 192.168.50.22/27 brd + dev ens4f0
+
 
 root@pve:/# cat /opt/startup_script_run.sh 
 nohup /opt/startup_script.sh &
