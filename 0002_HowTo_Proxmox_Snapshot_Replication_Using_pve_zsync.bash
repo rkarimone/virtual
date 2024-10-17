@@ -151,6 +151,28 @@ arc_summary | grep -E 'ARC size \(current\)|Min size \(hard limit\)|Max size \(h
 
 
 
+## force delete-replication-task##
+pvesr list
+pvesr delete 105-0 --force
+
+## Allow Unsupported SFP ##
+- vi /etc/modprobe.d/ixgbe.conf
+Add In...
+options ixgbe allow_unsupported_sfp=1
+- rmmod ixgbe; modprobe ixgbe
+
+vim /etc/default/grub
+Add In...
+GRUB_CMDLINE_LINUX="ixgbe.allow_unsupported_sfp=1"
+grub-mkconfig -o /boot/grub/grub.cfg
+pve-efiboot-tool refresh
+rmmod ixgbe && modprobe ixgbe
+
+vim /etc/kernel/cmdline
+Add In...
+ixgbe.allow_unsupported_sfp=1
+
+Finally, reboot the system and see that the interface comes up right.
 
 
 
