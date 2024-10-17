@@ -175,6 +175,29 @@ ixgbe.allow_unsupported_sfp=1
 Finally, reboot the system and see that the interface comes up right.
 
 
+---
+root@pve:/# cat /opt/startup_script.sh 
+#!/bin/bash
+sleep 10
+rmmod ixgbe && modprobe ixgbe
+sleep 2
+echo "4294967296" >> /sys/module/zfs/parameters/zfs_arc_max
+sleep 3
+ip link set ens4f0 up 
+ip link set ens4f1 up
+sleep 2
+ip addr add 192.168.40.22/27 brd + dev ens4f1
+ip addr add 192.168.50.22/27 brd + dev ens4f0
+
+root@pve:/# cat /opt/startup_script_run.sh 
+nohup /opt/startup_script.sh &
+
+root@pve:/# cat /etc/network/interfaces
+post-up /opt/startup_script_run.sh
+
+
+
+
 
 
 
