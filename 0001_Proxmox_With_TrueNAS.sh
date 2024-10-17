@@ -1,4 +1,13 @@
 
+### ZFS ARCH MEMORY ###
+Min 32GB Max 48GB 
+
+echo "34359738368" >> /sys/module/zfs/parameters/zfs_arc_min
+echo "51539607552" >> /sys/module/zfs/parameters/zfs_arc_max
+		
+vim /etc/modprobe.d/zfs.conf 
+options zfs zfs_arc_min=34359738368		
+options zfs zfs_arc_max=51539607552
 
 
 ### PROXMOX ZFS OVER iSCSI ###
