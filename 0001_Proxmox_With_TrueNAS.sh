@@ -77,7 +77,9 @@ chmod 644 ~/.ssh/config
 chmod 600 ~/.ssh/config
 
  Host *
-    StrictHostKeyChecking no
+    StrictHostKeyChecking no | StrictHostKeyChecking accept-new
+
+    
 
     
 
