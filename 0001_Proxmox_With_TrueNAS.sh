@@ -65,6 +65,11 @@ parallel-ssh -i -h hosts "apt install aptitude -y;"
 parallel-ssh -i -h hosts "aptitude install vim;"
 
 
+parallel-ssh -H "root@103.x.y.2:9898 root@103.x.y.3:9898" -i "zpool status |grep error |grep -v scan"
+parallel-ssh -H "root@103.x.t.2:9898 root@103.x.y.3:9898" -i "zpool status |grep state"
+
+
+
 
 ### prxsrv03n88iscsi01
 
