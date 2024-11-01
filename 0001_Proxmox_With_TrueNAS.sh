@@ -40,6 +40,25 @@ options zfs zfs_arc_max=51539607552
 
 
 
+$ sudo apt install pssh
+vim hosts_list
+root@172.16.198.62:22
+root@172.16.198.63:22
+root@172.16.198.64:22
+root@172.16.198.65:22
+
+parallel-ssh -i -h hosts_list "zpool status |grep state;"
+parallel-ssh -H "root@172.16.198.62:22" -i "hostname"
+
+rkarim@linux1981:~/pdsh$ parallel-ssh -H "root@172.16.198.62:22 root@172.16.198.63:22" -i "zpool status |grep error |grep -v scan"
+[1] 23:53:35 [SUCCESS] root@172.16.198.62:22
+errors: No known data errors
+errors: No known data errors
+errors: No known data errors
+[2] 23:53:35 [SUCCESS] root@172.16.198.63:22
+errors: No known data errors
+errors: No known data errors
+errors: No known data errors
 
 
 
