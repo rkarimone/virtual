@@ -61,6 +61,9 @@ errors: No known data errors
 errors: No known data errors
 
 
+parallel-ssh -i -h hosts "apt install aptitude -y;"
+parallel-ssh -i -h hosts "aptitude install vim;"
+
 
 
 ### prxsrv03n88iscsi01
