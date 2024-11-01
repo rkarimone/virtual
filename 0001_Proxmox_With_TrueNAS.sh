@@ -71,6 +71,18 @@ parallel-ssh -H "root@103.x.t.2:9898 root@103.x.y.3:9898" -i "zpool status |grep
 
 
 
+
+~/.ssh/config
+chmod 644 ~/.ssh/config
+chmod 600 ~/.ssh/config
+
+ Host *
+    StrictHostKeyChecking no
+
+    
+
+
+
 ### prxsrv03n88iscsi01
 
 
