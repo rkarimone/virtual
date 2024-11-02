@@ -85,7 +85,28 @@ chmod 600 ~/.ssh/config
  Host *
     StrictHostKeyChecking no | StrictHostKeyChecking accept-new
 
-    
+### More Option - ~/.ssh/config
+Host foo
+   StrictHostKeyChecking No
+   HostName 172.30.0.63
+   User foouser
+   IdentityFile ~/.ssh/id_foo.ed25519
+
+Host bar
+  StrictHostKeyChecking No
+  HostName bar.internal.elsewhere
+  User baruser
+  IdentityFile ~/.ssh/id_bar.ecdsa
+
+Host qux
+  StrictHostKeyChecking No
+  HostName qux.eternal.universe
+  User quxuser
+  IdentityFile ~/.ssh/id_qux.rsa
+
+
+
+  
 
     
 
