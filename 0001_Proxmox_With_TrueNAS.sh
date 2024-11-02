@@ -69,9 +69,15 @@ parallel-ssh -H "root@103.x.y.2:9898 root@103.x.y.3:9898" -i "zpool status |grep
 parallel-ssh -H "root@103.x.t.2:9898 root@103.x.y.3:9898" -i "zpool status |grep state"
 
 
+### From CLI
+ssh -o StrictHostKeyChecking=accept-new pve23
+ssh -o StrictHostKeyChecking=no pve23
 
+ssh -i "$8" -o StrictHostKeyChecking=no -l "$9" "$1"  "
+  set -o pipefail; mysqldump --single-transaction --skip-lock-tables -u $2 -p$3 -P $4 -h $5 $6
+" | gzip -c > "$7"
 
-
+### From Config
 ~/.ssh/config
 chmod 644 ~/.ssh/config
 chmod 600 ~/.ssh/config
