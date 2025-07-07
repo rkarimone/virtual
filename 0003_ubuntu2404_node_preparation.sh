@@ -91,6 +91,7 @@ net.ipv4.tcp_wmem = 20480 12582912 25165824
 net.ipv4.udp_wmem_min = 16384
 net.ipv4.tcp_max_tw_buckets = 1440000
 net.ipv4.tcp_tw_reuse = 1 
+vm.swappiness = 60
 
 ### if you want to disable ipv6 network
 net.ipv6.conf.all.disable_ipv6 = 1
