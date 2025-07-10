@@ -201,3 +201,13 @@ sudo systemctl restart networking
 sudo /etc/init.d/networking restart
 
 sudo rm -rf /usr/share/netplan /etc/netplan
+
+# sudo without password
+sudo visudo
+# Add the following line at the end of the file
+username ALL=(ALL) NOPASSWD:ALL
+
+<OR>
+
+sudo nano /etc/sudoers.d/nopasswd_reza
+reza ALL=(ALL) NOPASSWD:ALL
