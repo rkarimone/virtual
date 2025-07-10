@@ -177,3 +177,27 @@ deb https://repo.extreme-ix.org/ubuntu noble-updates main restricted universe mu
 deb https://repo.extreme-ix.org/ubuntu noble-backports main restricted universe multiverse
 deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
 
+# option2-fix use classic interface file
+
+sudo apt install ifupdown
+sudo apt purge netplan.io
+sudo ln -sf /dev/null /etc/systemd/system-generators/netplan
+
+sudo vim /etc/network/interfaces
+
+# loopback
+auto lo
+iface lo inet loopback
+
+# ethernet -- modify as per your interface name
+auto ens18
+iface ens18 inet static
+  address 192.168.1.100
+  netmask 255.255.255.0
+  gateway 192.168.1.1
+  dns-nameservers 8.8.8.8 8.8.4.4
+
+sudo systemctl restart networking
+sudo /etc/init.d/networking restart
+
+sudo rm -rf /usr/share/netplan /etc/netplan
