@@ -170,3 +170,10 @@ Suites: noble-security
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
+# Alternative 
+#deb https://mirrors.cicku.me/linuxmint/packages wilma main upstream import backport 
+deb https://repo.extreme-ix.org/ubuntu noble main restricted universe multiverse
+deb https://repo.extreme-ix.org/ubuntu noble-updates main restricted universe multiverse
+deb https://repo.extreme-ix.org/ubuntu noble-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+
