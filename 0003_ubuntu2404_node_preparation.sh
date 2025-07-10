@@ -6,7 +6,7 @@
 apt update
 apt full-upgrade -y
 
-apt install qemu-guest-agent locales locales-all openssh-server vim htop net-tools ifupdown tmux wireguard mtr wget curl traceroute -y
+apt install qemu-guest-agent locales locales-all openssh-server vim htop net-tools ifupdown tmux wireguard mtr wget curl traceroute frr -y
 apt install --install-recommends linux-generic-hwe-24.04 -y
 
 vim /etc/default/grub
