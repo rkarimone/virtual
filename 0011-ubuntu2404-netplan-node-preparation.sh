@@ -1,6 +1,6 @@
 
 
-#### Install Ubuntu Server Minimized/Minimal without LVM and with ssh-server only ### v1.02-Jul-2025
+#### Install Ubuntu Server Minimized/Minimal without LVM and with ssh-server only ### v1.03-Mar-2026
 
 
 [-STEP#01-]
